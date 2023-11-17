@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { fetchWeatherByCity } from './services/weatherServices';
-import { Container, Row, Col } from 'react-bootstrap';
 import './styles.css';
 //define weather api response shape
 interface WeatherData {
@@ -42,23 +41,18 @@ useEffect(()=> {
  
 
   return (
-    <Container>
-    <Row>
-      {/* Temperature Section */}
-      <Col md={6} className="temperature-section">
-        <h4>Temperature</h4>
-        <p>{weather ? weather.temperature : 'loading...'}</p>
-        <p>{weather ? weather.tempMin : 'loading...'}</p>
-        <p>{weather ? weather.tempMax : 'loading...'}</p>
-      </Col>
+    <>
+        <h2>Temperature</h2>
+        <h4>{weather ? weather.temperature : 'loading...'}</h4>
+        <h4>{weather ? weather.tempMin : 'loading...'}</h4>
+        <h4>{weather ? weather.tempMax : 'loading...'}</h4>
+   
 
-      {/* Description Section */}
-      <Col md={6} className="description-section">
-        <h4>Description</h4>
-        <p>{weather ? weather.description : 'loading...'}</p>
-      </Col>
-    </Row>
-  </Container>
+      
+        <h2>Description</h2>
+        <h4>{weather ? weather.description : 'loading...'}</h4>
+    </>
+    
   );
 }
 
