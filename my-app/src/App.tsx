@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fetchWeatherByCity from './services/weatherServices';
-import './App.css';
+
 
 interface WeatherData {
   name: string;
@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchWeatherByCity('');
+        const data = await fetchWeatherByCity('New York');
         setWeatherData(data);
       } catch (error) {
         console.error(error);
