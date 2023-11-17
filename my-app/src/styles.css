@@ -1,0 +1,13 @@
+/* styles.css */
+.temperature-section {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .description-section {
+    background-color: #e9ecef; /* Lighter gray background */
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 100;
+  }

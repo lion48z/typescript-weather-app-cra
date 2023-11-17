@@ -2,12 +2,24 @@ import axios from "axios";
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = process.env.REACT_APP_API_KEY;
-
-const fetchWeatherByCity = async (city: string) => {
+interface WeatherAPIResponse {
+   main:{
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+   }
+weather: [{
+    description: string;
+    }]
+}
+const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | null >  => {
+    console.log("fetch weather by city has run ")
   try {
-    const response = await axios.get(BASE_URL, {
+    const response = await axios.get(`${BASE_URL}`, {
       params: {
         q: city,
+        units: 'imperial',
         appid: API_KEY,
       },
     });
@@ -19,6 +31,5 @@ const fetchWeatherByCity = async (city: string) => {
   }
 };
 
+export { fetchWeatherByCity };
 
-
-export default fetchWeatherByCity;
