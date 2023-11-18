@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+const BASE_URL = "https://api.openweathermap.org/data/2.5/";
 const API_KEY = process.env.REACT_APP_API_KEY;
 interface WeatherAPIResponse {
    main:{
@@ -12,6 +12,7 @@ interface WeatherAPIResponse {
    }
 weather: [{
     description: string;
+    icon: string;
     }]
 
   name: string;
@@ -20,10 +21,24 @@ weather: [{
   }
 
 }
+interface WeatherForecastLatLong {
+  main:{
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    humidity: number;
+   }
+   weather: [{
+    description: string;
+    //icon: string;
+    }]
+  city: {name:string;}
+}
 const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | null >  => {
     console.log("fetch weather by city has run ")
   try {
-    const response = await axios.get(`${BASE_URL}`, {
+    const response = await axios.get(`${BASE_URL}weather`, {
       params: {
         q: city,
         units: 'imperial',
@@ -38,5 +53,25 @@ const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | nu
   }
 };
 
-export { fetchWeatherByCity };
+const forecastWeatherByLatLong = async (lat: string, lon:string): Promise<WeatherForecastLatLong | null >  => {
+
+  console.log("fetch weather by city has run ")
+try {
+  const response = await axios.get(`${BASE_URL}forecast5`, {
+    params: {
+      lat: lat,
+      lon: lon,
+      units: 'imperial',
+      appid: API_KEY,
+    },
+  });
+  return response.data;
+} catch (error) {
+  console.error(error);
+  // Always have API calls return something
+  return null;
+}
+};
+
+export { fetchWeatherByCity, forecastWeatherByLatLong };
 
