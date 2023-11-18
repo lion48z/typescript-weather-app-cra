@@ -8,10 +8,14 @@ interface WeatherAPIResponse {
     feels_like: number;
     temp_min: number;
     temp_max: number;
+    humidity: number;
    }
 weather: [{
     description: string;
     }]
+
+  name: string;
+
 }
 const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | null >  => {
     console.log("fetch weather by city has run ")
