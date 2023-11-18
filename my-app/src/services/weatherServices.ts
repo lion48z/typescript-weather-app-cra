@@ -34,6 +34,7 @@ interface WeatherForecastLatLong {
     //icon: string;
     }]
   city: {name:string;}
+  dt: {date:string}
 }
 const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | null >  => {
     console.log("fetch weather by city has run ")
@@ -53,11 +54,11 @@ const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | nu
   }
 };
 
-const forecastWeatherByLatLong = async (lat: string, lon:string): Promise<WeatherForecastLatLong | null >  => {
+const fetchForecastWeatherByLatLong = async (lat: number, lon:number): Promise<WeatherForecastLatLong | null >  => {
 
-  console.log("fetch weather by city has run ")
+  console.log("fetch forecast has run")
 try {
-  const response = await axios.get(`${BASE_URL}forecast5`, {
+  const response = await axios.get(`${BASE_URL}forecast`, {
     params: {
       lat: lat,
       lon: lon,
@@ -73,5 +74,5 @@ try {
 }
 };
 
-export { fetchWeatherByCity, forecastWeatherByLatLong };
+export { fetchWeatherByCity, fetchForecastWeatherByLatLong };
 
