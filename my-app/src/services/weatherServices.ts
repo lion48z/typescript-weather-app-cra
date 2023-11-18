@@ -22,19 +22,23 @@ weather: [{
 
 }
 interface WeatherForecastLatLong {
- list:[{
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    humidity: number;
-   }]
-   weather: [{
-    description: string;
-    
-    }]
-  city: {name:string;}
-  dt_txt: string
+  list: {
+    main: {
+      temp: number;
+      feels_like: number;
+      temp_min: number;
+      temp_max: number;
+      humidity: number;
+    };
+    weather: {
+      description: string;
+      icon: string;
+    }[];
+    dt_txt: string;
+  }[];
+  city: {
+    name: string;
+  };
 }
 const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | null >  => {
     console.log("fetch weather by city has run ")
@@ -62,6 +66,7 @@ try {
     params: {
       lat: lat,
       lon: lon,
+      cnt: 8,
       units: 'imperial',
       appid: API_KEY,
     },

@@ -3,7 +3,7 @@ import { fetchWeatherByCity, fetchForecastByLatLong } from './services/weatherSe
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { Card, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faCloud, faCloudSun, faCloudRain, faSnowflake, faThunderstorm } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faCloud, faCloudSun, faCloudRain, faSnowflake, faThunderstorm, faMoon, faCloudMoon } from '@fortawesome/free-solid-svg-icons';
 interface WeatherData {
   temperature:number,
   humidity:number,
@@ -101,6 +101,10 @@ useEffect(() => {
         return <FontAwesomeIcon icon={faThunderstorm} />;
       case '13d':
         return <FontAwesomeIcon icon={faSnowflake} />;
+        case '01n':
+          return <FontAwesomeIcon icon={faMoon} />;
+        case '02n':
+          return <FontAwesomeIcon icon={faCloudMoon} />;
       default:
         return null;
     }
