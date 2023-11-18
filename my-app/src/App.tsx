@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchWeatherByCity } from './services/weatherServices';
+import { fetchWeatherByCity, fetchForecastByLatLong } from './services/weatherServices';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { Card, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,7 +20,7 @@ interface ForecastData {
   tempMax:number,
   description:string,
   name:string,
-  
+  date: string,
 }
 
 function App() {
@@ -53,6 +53,37 @@ useEffect(()=> {
   }
   getWeather();
 },[]);
+useEffect(() => {
+  const getForecast = async () => {
+    try {
+      const forecastResponse = await fetchForecastByLatLong(41.977, -91.66);
+      
+      if (forecastResponse) {
+       
+        
+
+        setForecast({
+          temperature: forecastResponse.list[0].main.temp,
+          humidity: forecastResponse.list[0].main.humidity,
+          tempMax: forecastResponse.list[0].main.temp_max,
+          tempMin: forecastResponse.list[0].main.temp_min,
+          description: forecastResponse.list[0].weather[0].description,
+          name: forecastResponse.city.name,
+          date: forecastResponse.list[0].dt_txt,
+        });
+        
+        
+        
+        
+      }   
+       
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  getForecast();
+}, []);
   const getWeatherIcon = (icon: string) => {
     switch (icon) {
       case '01d':
@@ -114,11 +145,23 @@ useEffect(()=> {
       <Col md={6}>
         <Card>
           <Card.Body>
-            <h2 className="card-title">Hourly</h2>
-            <p className="card-text">{weather ? weather.description : 'loading...'}</p>
+          <h2 className="card-title">{forecast? forecast.name : 'loading...'}</h2>
+            <h2 className="card-title">Extended</h2>
             <p className="card-text">
-                {weather ? getWeatherIcon(weather.icon) : 'loading...'}
-              </p>
+              {forecast ? `Date is : ${forecast.date}` : 'loading...'}
+            </p>
+            <p className="card-text">
+              {forecast ? `Current: ${forecast.temperature}°F` : 'loading...'}
+            </p>
+            <p className="card-text">
+              {forecast ? `Min: ${forecast.tempMin}°F` : 'loading...'}
+            </p>
+            <p className="card-text">
+              {forecast? `Max: ${forecast.tempMax}°F` : 'loading...'}
+            </p>
+            <p className="card-text">
+              {forecast? `Max: ${forecast.humidity}%` : 'loading...'}
+            </p>
           </Card.Body>
         </Card>
       </Col>
