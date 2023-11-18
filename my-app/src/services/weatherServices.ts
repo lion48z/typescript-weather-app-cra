@@ -15,6 +15,9 @@ weather: [{
     }]
 
   name: string;
+  sys:{
+    country: string;
+  }
 
 }
 const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | null >  => {

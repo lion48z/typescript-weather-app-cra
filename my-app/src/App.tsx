@@ -28,7 +28,8 @@ useEffect(()=> {
       tempMax: weatherResponse.main.temp_max,
       tempMin: weatherResponse.main.temp_min,
       description: weatherResponse.weather[0].description,
-      name: weatherResponse.name,
+      
+      name: `${weatherResponse.name}, ${weatherResponse.sys.country}`
     })
 
   }
@@ -48,6 +49,7 @@ useEffect(()=> {
           <div className="card">
             <div className="card-body">
             <h2 className="card-title">{weather ? weather.name : 'loading...'}</h2>
+            
               <h2 className="card-title">Temperature</h2>
               <p className="card-text">
                 {weather ? `Current: ${weather.temperature}°F` : 'loading...'}
