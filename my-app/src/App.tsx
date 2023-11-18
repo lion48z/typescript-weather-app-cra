@@ -113,8 +113,16 @@ useEffect(() => {
  
 
   return (
+    <>
+    
     <div className="container mt-5">
+    <div>
+        <input type="text" placeholder="Enter location" />
+        <button type="button" className="btn btn-primary"onClick={() => console.log('Search clicked')}>Search</button>
+      </div>
+      
     <Row>
+    
       <Col md={6}>
         <Card>
           <Card.Body>
@@ -171,6 +179,7 @@ useEffect(() => {
       </Col>
     </Row>
   </div>
+  </>
   );
 }
 
