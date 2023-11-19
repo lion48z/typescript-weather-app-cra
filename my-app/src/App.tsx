@@ -3,6 +3,7 @@ import { fetchWeatherByCity, fetchForecastByLatLong } from './services/weatherSe
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { Card, Col, Row } from 'react-bootstrap';
 import WeatherIcon from './WeatherIcon'; 
+import SearchBar from './SearchBar';
 
 interface WeatherData {
   temperature:number,
@@ -90,10 +91,7 @@ useEffect(() => {
     <>
     
     <div className="container mt-5">
-    <div>
-        <input type="text"className="form-control" placeholder="Enter location" />
-        <button type="button" className="btn btn-primary"onClick={() => console.log('Search clicked')}>Search</button>
-      </div>
+    <SearchBar/>
       
     <Row>
     
