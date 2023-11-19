@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { fetchWeatherByCity, fetchForecastByLatLong } from './services/weatherServices';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { Card, Col, Row } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faCloud, faCloudSun, faCloudRain, faSnowflake, faThunderstorm, faMoon, faCloudMoon } from '@fortawesome/free-solid-svg-icons';
+import WeatherIcon from './WeatherIcon'; 
+
 interface WeatherData {
   temperature:number,
   humidity:number,
@@ -84,32 +84,6 @@ useEffect(() => {
   
   getForecast();
 }, []);
-  const getWeatherIcon = (icon: string) => {
-    switch (icon) {
-      case '01d':
-        return <FontAwesomeIcon icon={faSun} />;
-      case '02d':
-        return <FontAwesomeIcon icon={faCloudSun} />;
-      case '03d':
-      case '04d':
-        return <FontAwesomeIcon icon={faCloud} />;
-      case '09d':
-        return <FontAwesomeIcon icon={faCloudRain} />;
-      case '10d':
-        return <FontAwesomeIcon icon={faCloudSun} />;
-      case '11d':
-        return <FontAwesomeIcon icon={faThunderstorm} />;
-      case '13d':
-        return <FontAwesomeIcon icon={faSnowflake} />;
-        case '01n':
-          return <FontAwesomeIcon icon={faMoon} />;
-        case '02n':
-          return <FontAwesomeIcon icon={faCloudMoon} />;
-      default:
-        return null;
-    }
-  };
-  
  
 
   return (
@@ -117,7 +91,7 @@ useEffect(() => {
     
     <div className="container mt-5">
     <div>
-        <input type="text" placeholder="Enter location" />
+        <input type="text"className="form-control" placeholder="Enter location" />
         <button type="button" className="btn btn-primary"onClick={() => console.log('Search clicked')}>Search</button>
       </div>
       
@@ -149,8 +123,8 @@ useEffect(() => {
             <h2 className="card-title">Description</h2>
             <p className="card-text">{weather ? weather.description : 'loading...'}</p>
             <p className="card-text">
-                {weather ? getWeatherIcon(weather.icon) : 'loading...'}
-              </p>
+              {weather ? <WeatherIcon icon={weather.icon} /> : 'loading...'}
+            </p>
           </Card.Body>
         </Card>
       </Col>
