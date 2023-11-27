@@ -78,56 +78,6 @@ const onSearch = async (query: string) => {
 useEffect(() => {
   onSearch('Cedar Rapids');
 }, [])
-/*
-useEffect(()=> {
-  const getWeather = async () => {
-    try{
-    const weatherResponse = await fetchWeatherByCity('Cedar Rapids');
-    if (weatherResponse){
-    setWeather({
-      temperature: weatherResponse.main.temp,
-      humidity: weatherResponse.main.humidity,
-      tempMax: weatherResponse.main.temp_max,
-      tempMin: weatherResponse.main.temp_min,
-      description: weatherResponse.weather[0].description,
-      icon: weatherResponse.weather[0].icon,
-      name: `${weatherResponse.name}, ${weatherResponse.sys.country}`
-    })
-
-  }
-}catch (error) {
-  console.log(error);
-}
-  }
-  getWeather();
-},[]);
-// ...
-
-useEffect(() => {
-  const getForecast = async () => {
-    try {
-      const forecastResponse = await fetchForecastByLatLong(41.977, -91.66);
-
-      if (forecastResponse) {
-        const hourlyForecasts = forecastResponse.list.slice(0, 8).map((forecastItem) => ({
-          temperature: forecastItem.main.temp,
-          humidity: forecastItem.main.humidity,
-          tempMax: forecastItem.main.temp_max,
-          tempMin: forecastItem.main.temp_min,
-          description: forecastItem.weather[0].description,
-          name: forecastResponse.city.name,
-          date: forecastItem.dt_txt,
-        }));
-
-        setForecast(hourlyForecasts);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  getForecast();
-}, []);*/
 
 
 
@@ -202,3 +152,53 @@ useEffect(() => {
 }
 
 export default App;
+/*
+useEffect(()=> {
+  const getWeather = async () => {
+    try{
+    const weatherResponse = await fetchWeatherByCity('Cedar Rapids');
+    if (weatherResponse){
+    setWeather({
+      temperature: weatherResponse.main.temp,
+      humidity: weatherResponse.main.humidity,
+      tempMax: weatherResponse.main.temp_max,
+      tempMin: weatherResponse.main.temp_min,
+      description: weatherResponse.weather[0].description,
+      icon: weatherResponse.weather[0].icon,
+      name: `${weatherResponse.name}, ${weatherResponse.sys.country}`
+    })
+
+  }
+}catch (error) {
+  console.log(error);
+}
+  }
+  getWeather();
+},[]);
+// ...
+
+useEffect(() => {
+  const getForecast = async () => {
+    try {
+      const forecastResponse = await fetchForecastByLatLong(41.977, -91.66);
+
+      if (forecastResponse) {
+        const hourlyForecasts = forecastResponse.list.slice(0, 8).map((forecastItem) => ({
+          temperature: forecastItem.main.temp,
+          humidity: forecastItem.main.humidity,
+          tempMax: forecastItem.main.temp_max,
+          tempMin: forecastItem.main.temp_min,
+          description: forecastItem.weather[0].description,
+          name: forecastResponse.city.name,
+          date: forecastItem.dt_txt,
+        }));
+
+        setForecast(hourlyForecasts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getForecast();
+}, []);*/
