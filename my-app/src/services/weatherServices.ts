@@ -58,14 +58,13 @@ const fetchWeatherByCity = async (city: string): Promise<WeatherAPIResponse | nu
   }
 };
 
-const fetchForecastByLatLong = async (lat: number, lon:number): Promise<WeatherForecastLatLong | null >  => {
+const fetchForecastByLatLong = async (city: string): Promise<WeatherForecastLatLong | null >  => {
 
   console.log("fetch forecast has run")
 try {
   const response = await axios.get(`${BASE_URL}forecast`, {
     params: {
-      lat: lat,
-      lon: lon,
+      q:city,
       cnt: 8,
       units: 'imperial',
       appid: API_KEY,
