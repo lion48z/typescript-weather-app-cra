@@ -9,8 +9,13 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch}) => {
   const [query, setQuery] = useState<string>('');
 
-  const handleSearch = () => {
+  const handleSearch = () => {       // onClick submit button
     onSearch(query);
+  };
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {           // add use of enter key
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   return (
@@ -20,6 +25,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch}) => {
         placeholder="Search..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
       <button type="submit" onClick={handleSearch}>Search</button>
     </div>
